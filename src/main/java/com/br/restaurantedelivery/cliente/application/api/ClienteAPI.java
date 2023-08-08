@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +39,11 @@ public interface ClienteAPI {
 	    ClienteDetalhadoResponse buscaClientePorId(@PathVariable UUID idCliente);
 	 
 	 @PatchMapping(value = "/{idCliente}")
-		@ResponseStatus(code = HttpStatus.NO_CONTENT)
+		@ResponseStatus(code = HttpStatus.ACCEPTED)
 		void alteraCliente(@PathVariable UUID idCliente, @Valid @RequestBody ClienteAlteracaoRequest clienteAlteracaoRequest);
+	 
+	 @DeleteMapping(value = "/{idCliente}")
+	    @ResponseStatus(value = HttpStatus.ACCEPTED)
+	    void deletaCliente(@PathVariable UUID idCliente);
 
 }
