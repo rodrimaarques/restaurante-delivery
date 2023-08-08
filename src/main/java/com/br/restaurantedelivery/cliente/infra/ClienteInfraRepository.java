@@ -1,6 +1,7 @@
 package com.br.restaurantedelivery.cliente.infra;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -44,5 +45,14 @@ public class ClienteInfraRepository implements ClienteRepository {
 			List<Cliente> todosClientes = clienteSpringJPARepository.findAll();
 			log.info("[finaliza] ClienteInfraRepository - buscaTodosClientesCadastrados");
 			return todosClientes;
+		}
+	 
+	 @Override
+		public Cliente buscaClientePorId(UUID idCliente) {
+			log.info("[Start] ClienteInfraRepository - buscaClientePorId");
+			Cliente cliente = clienteSpringJPARepository.findById(idCliente)
+					.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Cliente não encontrado."));
+			log.info("[Finish] ClienteInfraRepository - buscaClientePorId");
+			return cliente;
 		}
 }

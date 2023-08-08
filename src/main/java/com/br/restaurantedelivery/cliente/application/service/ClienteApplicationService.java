@@ -1,10 +1,12 @@
 package com.br.restaurantedelivery.cliente.application.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
 import com.br.restaurantedelivery.cliente.application.api.request.ClienteRequest;
+import com.br.restaurantedelivery.cliente.application.api.response.ClienteDetalhadoResponse;
 import com.br.restaurantedelivery.cliente.application.api.response.ClienteListResponse;
 import com.br.restaurantedelivery.cliente.application.api.response.ClienteResponse;
 import com.br.restaurantedelivery.cliente.application.repository.ClienteRepository;
@@ -36,6 +38,14 @@ public class ClienteApplicationService implements ClienteService {
 		log.info("[finaliza] ClienteApplicationService - buscaTodosClientesCadastrados");
 		return ClienteListResponse.converte(clientes);
 		
+	}
+	
+	@Override
+	public ClienteDetalhadoResponse buscaClientePorId(UUID idCliente) {
+		log.info("[inicia] ClienteApplicationService - buscaClientePorId");
+		Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
+		log.info("[finaliza] ClienteApplicationService - buscaClientePorId");
+		return new ClienteDetalhadoResponse(cliente);
 	}
 
 }

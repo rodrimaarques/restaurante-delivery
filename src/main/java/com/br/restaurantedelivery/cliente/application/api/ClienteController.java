@@ -1,10 +1,12 @@
 package com.br.restaurantedelivery.cliente.application.api;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.restaurantedelivery.cliente.application.api.request.ClienteRequest;
+import com.br.restaurantedelivery.cliente.application.api.response.ClienteDetalhadoResponse;
 import com.br.restaurantedelivery.cliente.application.api.response.ClienteListResponse;
 import com.br.restaurantedelivery.cliente.application.api.response.ClienteResponse;
 import com.br.restaurantedelivery.cliente.application.service.ClienteService;
@@ -34,6 +36,14 @@ public class ClienteController implements ClienteAPI {
 		List<ClienteListResponse> clientes = clienteService.buscaTodosClientesCadastrados();
 		log.info("[finaliza] ClienteController - buscaTodosClientesCadastrados");
 		return clientes;
+	}
+	
+	@Override
+	public ClienteDetalhadoResponse buscaClientePorId(UUID idCliente) {
+		log.info("[inicia] ClienteController - buscaClientePorId");
+		ClienteDetalhadoResponse clienteDetalhadoResponse = clienteService.buscaClientePorId(idCliente);
+		log.info("[finaliza] ClienteController - buscaClientePorId");
+		return clienteDetalhadoResponse;
 	}
 
 }
