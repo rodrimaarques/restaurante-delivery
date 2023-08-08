@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.br.restaurantedelivery.cliente.application.api.request.ClienteAlteracaoRequest;
 import com.br.restaurantedelivery.cliente.application.api.request.ClienteRequest;
 import com.br.restaurantedelivery.cliente.application.api.response.ClienteDetalhadoResponse;
 import com.br.restaurantedelivery.cliente.application.api.response.ClienteListResponse;
@@ -44,6 +45,13 @@ public class ClienteController implements ClienteAPI {
 		ClienteDetalhadoResponse clienteDetalhadoResponse = clienteService.buscaClientePorId(idCliente);
 		log.info("[finaliza] ClienteController - buscaClientePorId");
 		return clienteDetalhadoResponse;
+	}
+	
+	public void alteraCliente(UUID idCliente, ClienteAlteracaoRequest clienteAlteracaoRequest) {
+		log.info("[inicia] ClienteController - alteraCliente ");
+		log.info("[idCliente] {}", idCliente);
+		clienteService.alteraCliente(idCliente, clienteAlteracaoRequest);
+		log.info("[finaliza] ClienteController - alteraCliente ");
 	}
 
 }

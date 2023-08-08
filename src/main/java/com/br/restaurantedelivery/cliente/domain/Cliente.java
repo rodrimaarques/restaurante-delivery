@@ -3,6 +3,7 @@ package com.br.restaurantedelivery.cliente.domain;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.br.restaurantedelivery.cliente.application.api.request.ClienteAlteracaoRequest;
 import com.br.restaurantedelivery.cliente.application.api.request.ClienteRequest;
 
 import jakarta.persistence.Entity;
@@ -55,7 +56,13 @@ public class Cliente {
 		this.dataHoraDoCadastro = LocalDateTime.now();
 		this.dataDaAlteracaoDoCadastro = LocalDateTime.now();
 	}
-	
-	
 
+
+	public void altera(ClienteAlteracaoRequest clienteAlteracaoRequest) {
+		 this.nomeCliente = clienteAlteracaoRequest.getNomeCliente();
+	        this.telefone = clienteAlteracaoRequest.getTelefone();
+	        this.dataDaAlteracaoDoCadastro = LocalDateTime.now();
+	    }
+		
 }
+	

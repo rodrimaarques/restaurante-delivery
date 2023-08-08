@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.br.restaurantedelivery.cliente.application.api.request.ClienteAlteracaoRequest;
 import com.br.restaurantedelivery.cliente.application.api.request.ClienteRequest;
 import com.br.restaurantedelivery.cliente.application.api.response.ClienteDetalhadoResponse;
 import com.br.restaurantedelivery.cliente.application.api.response.ClienteListResponse;
@@ -47,5 +48,14 @@ public class ClienteApplicationService implements ClienteService {
 		log.info("[finaliza] ClienteApplicationService - buscaClientePorId");
 		return new ClienteDetalhadoResponse(cliente);
 	}
+	
+	 @Override
+	    public void alteraCliente(UUID idCliente, ClienteAlteracaoRequest clienteAlteracaoRequest) {
+	        log.info("[inicia] ClienteAplicationService - alteraCliente");
+	        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
+	        cliente.altera(clienteAlteracaoRequest);
+	        clienteRepository.salvaCliente(cliente);
+	        log.info("[finaliza] ClienteAplicationService - alteraCliente");
+	    }
 
 }
