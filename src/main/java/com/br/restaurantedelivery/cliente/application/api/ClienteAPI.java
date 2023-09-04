@@ -34,16 +34,16 @@ public interface ClienteAPI {
 	@ResponseStatus(code = HttpStatus.OK)
 	List<ClienteListResponse> buscaTodosClientesCadastrados();
 	
-	 @GetMapping(value = "/{idCliente}")
-	    @ResponseStatus(HttpStatus.OK)
-	    ClienteDetalhadoResponse buscaClientePorId(@PathVariable UUID idCliente);
+	@GetMapping(value = "/{idCliente}")
+	@ResponseStatus(HttpStatus.OK)
+	ClienteDetalhadoResponse buscaClientePorId(@PathVariable UUID idCliente);
 	 
-	 @PatchMapping(value = "/{idCliente}")
-		@ResponseStatus(code = HttpStatus.ACCEPTED)
-		void alteraCliente(@PathVariable UUID idCliente, @Valid @RequestBody ClienteAlteracaoRequest clienteAlteracaoRequest);
+	@PatchMapping(value = "/{idCliente}")
+	@ResponseStatus(code = HttpStatus.ACCEPTED)
+	void alteraCliente(@PathVariable UUID idCliente, @Valid @RequestBody ClienteAlteracaoRequest clienteAlteracaoRequest);
 	 
-	 @DeleteMapping(value = "/{idCliente}")
-	    @ResponseStatus(value = HttpStatus.ACCEPTED)
-	    void deletaCliente(@PathVariable UUID idCliente);
+	@DeleteMapping(value = "/{idCliente}")
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	void deletaCliente(@PathVariable UUID idCliente);
 
 }
